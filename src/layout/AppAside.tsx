@@ -10,14 +10,14 @@ function renderLink(items?: IRoute[], basePath = "/", level = 0) {
         <ul className="flex flex-col">
             {
                 items.map(value => {
-                    const { path, title, children } = value
+                    const { path, menuTitle, children } = value
                     const actPath = pathResolve(basePath, path)
                     return (
-                        <li key={actPath} className="my-2" style={{ paddingLeft: padLeft }}>
+                        <li key={actPath} className="my-1" style={{ paddingLeft: padLeft }}>
                             <NavLink
                                 to={actPath}
                                 className={({ isActive }) => isActive ? 'text-orange-700 underline' : ''}>
-                                <span>{title}</span>
+                                <span>{menuTitle}</span>
                             </NavLink>
                             {
                                 renderLink(children, actPath, level + 1)
@@ -32,8 +32,8 @@ function renderLink(items?: IRoute[], basePath = "/", level = 0) {
 
 function AppAside() {
     return (
-        <div className="w-64 bg-white drop-shadow overflow-hidden flex flex-col h-full">
-            <div className="bg-blue-500 px-2 py-4 text-center font-bold text-white drop-shadow-lg">React</div>
+        <div className="w-64 bg-white drop-shadow-sm overflow-hidden flex flex-col h-full">
+            <div className="bg-blue-500 px-2 py-5 text-center font-bold text-white">React Ecosystem</div>
             <div className="flex-1 overflow-y-auto p-2"> {renderLink(routes)}</div>
         </div>
     )

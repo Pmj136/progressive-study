@@ -1,13 +1,13 @@
 import React from 'react'
 import AppAside from "./AppAside";
-import RouterView from "./RouterView";
+import { Outlet } from "react-router-dom";
 
 function Layout() {
     return (
         <div className="flex h-screen overflow-hidden">
             <AppAside />
-            <div className="flex-1 bg-gray-50">
-                <RouterView />
+            <div className="flex flex-col flex-1 bg-gray-200">
+                <Outlet />
             </div>
         </div>
     )

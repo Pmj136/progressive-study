@@ -1,5 +1,4 @@
 export function pathResolve(parent: string, child: string) {
-    const str = parent + child
-    // if (child.startsWith('/')) return str
-    return str.replace(/\/\//g, '/')
+    const str = parent + '/' + child
+    return str.replace(/\/+/g, '/')
 }

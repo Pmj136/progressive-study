@@ -5,7 +5,7 @@ import { pathResolve } from "./util";
 
 function renderLink(items?: IRoute[], basePath = "/", level = 0) {
     if (!items) return null
-    let padLeft = level * 15
+    let padLeft = level * 10
     return (
         <ul className="flex flex-col">
             {

@@ -1,5 +1,6 @@
-import { ReactElement } from "react";
+import { lazy, ReactElement } from "react";
 import { Outlet, Route, Routes } from "react-router-dom";
+import Layout from "./layout/Layout";
 import routes, { IRoute } from "./routes";
 
 function renderIndexRoute(items?: IRoute[]): ReactElement | null {
@@ -28,11 +29,14 @@ function renderRoutes(items?: IRoute[]): ReactElement[] | null {
         )
     })
 }
-
+const Page404 = lazy(() => import('./pages/Page404'))
 function App() {
     return (
         <Routes>
-           {renderRoutes(routes)}
+            <Route path="/" element={<Layout />}>
+                {renderRoutes(routes)}
+            </Route>
+            <Route path="*" element={<Page404 />} />
         </Routes>
     )
 }

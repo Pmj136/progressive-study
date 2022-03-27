@@ -34,7 +34,7 @@ function AppAside() {
     return (
         <div className="w-64 bg-white drop-shadow-sm overflow-hidden flex flex-col h-full">
             <div className="bg-blue-500 px-2 py-5 text-center font-bold text-white">React Ecosystem</div>
-            <div className="flex-1 overflow-y-auto p-2"> {renderLink(routes)}</div>
+            <div className="flex-1 overflow-y-auto pl-4 py-3"> {renderLink(routes)}</div>
         </div>
     )
 }

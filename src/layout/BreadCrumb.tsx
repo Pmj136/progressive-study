@@ -18,6 +18,9 @@ function getItems(pathname: string) {
   if (pathname === '/') return ['intro']
   const items = pathname.split('/')
   items.shift()
+  if (pathname.endsWith('/')) {
+    items.pop()
+  }
   return items
 }
 export default function BreadCrumb() {

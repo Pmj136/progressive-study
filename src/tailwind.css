@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply bg-gray-200 py-1.5 px-3 rounded-xl text-sm
+    }
+
+    .btn:active {
+        @apply drop-shadow-xl scale-95
+    }
+
+    .btn-primary {
+        @apply bg-blue-700 text-white
+    }
+
+    .btn-warn {
+        @apply bg-amber-600 text-white
+    }
+}

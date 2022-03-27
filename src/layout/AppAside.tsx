@@ -15,6 +15,7 @@ function renderLink(items?: IRoute[], basePath = "/", level = 0) {
                     return (
                         <li key={actPath} className="my-1" style={{ paddingLeft: padLeft }}>
                             <NavLink
+                                replace
                                 to={actPath}
                                 className={({ isActive }) => isActive ? 'text-orange-700 underline' : ''}>
                                 <span>{menuTitle}</span>

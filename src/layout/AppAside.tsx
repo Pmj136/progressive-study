@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink } from "react-router-dom";
 import routes, { IRoute } from "../routes";
 import { pathResolve } from "./util";

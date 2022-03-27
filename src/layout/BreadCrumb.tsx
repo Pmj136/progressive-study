@@ -2,6 +2,7 @@ import { useMemo } from "react"
 import { NavLink, useLocation } from "react-router-dom"
 
 function getUrls(pathname: string) {
+  if (pathname === '/') return ['/intro']
   const matchAll = pathname.match(/\/\w+(?=\/?)/g)
   if (matchAll == null) return []
   const result: string[] = []
@@ -14,6 +15,7 @@ function getUrls(pathname: string) {
   return result
 }
 function getItems(pathname: string) {
+  if (pathname === '/') return ['intro']
   const items = pathname.split('/')
   items.shift()
   return items
@@ -27,11 +29,11 @@ export default function BreadCrumb() {
       {
         items.map((v, i) => {
           return (
-            <li key={i} className="after:content-['>'] after:mx-2 after:text-gray-500 last:after:content-['']">
+            <li key={i} className="font-bold after:content-['>'] after:mx-2 after:text-gray-500 last:after:content-['']">
               <NavLink
                 replace
                 to={urls[i]}
-                className={i !== items.length - 1 ? 'text-blue-700' : 'text-gray-600 cursor-not-allowed font-bold'}>
+                className={i !== items.length - 1 ? 'text-blue-700' : 'text-gray-600 cursor-not-allowed'}>
                 {v}
               </NavLink>
             </li>

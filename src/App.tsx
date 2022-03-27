@@ -1,19 +1,23 @@
-import React from 'react'
-import { Route, Routes } from "react-router-dom";
+import { ReactElement } from "react";
+import { Outlet, Route, Routes } from "react-router-dom";
 import routes, { IRoute } from "./routes";
 
-function renderIndexRoute(items?: IRoute[]) {
+function renderIndexRoute(items?: IRoute[]): ReactElement | null {
     if (items && items.length) {
-        const { element: Comp, props } = items[0]
+        const { element = Outlet, props } = items[0]
+        if (element === Outlet)
+            return renderIndexRoute(items[0].children)
+        const Comp = element
         return <Route index element={<Comp {...props} />} />
     }
     return null
 }
 
-function renderRoutes(items?: IRoute[]) {
+function renderRoutes(items?: IRoute[]): ReactElement[] | null {
     if (!items) return null
     return items.map((value) => {
-        const { path, element: Comp, props, children } = value
+        const { path, element = Outlet, props, children } = value
+        const Comp = element
         return (
             <Route path={path} element={<Comp {...props} />} key={path}>
                 <>
@@ -28,7 +32,7 @@ function renderRoutes(items?: IRoute[]) {
 function App() {
     return (
         <Routes>
-            {renderRoutes(routes)}
+           {renderRoutes(routes)}
         </Routes>
     )
 }

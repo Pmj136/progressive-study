@@ -29,11 +29,13 @@ function renderRoutes(items?: IRoute[]): ReactElement[] | null {
         )
     })
 }
+
 const Page404 = lazy(() => import('./pages/Page404'))
 function App() {
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
+                {renderIndexRoute(routes)}
                 {renderRoutes(routes)}
             </Route>
             <Route path="*" element={<Page404 />} />

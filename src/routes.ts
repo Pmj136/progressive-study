@@ -1,62 +1,98 @@
 import { FunctionComponent, lazy, LazyExoticComponent } from "react";
-import IndexPage from "./pages/IndexPage";
-import Layout from "./layout/Layout";
 
 export interface IRoute {
     path: string;
     menuTitle?: string;
-    element: LazyExoticComponent<any> | FunctionComponent<any>;
+    element?: LazyExoticComponent<any> | FunctionComponent<any>;
     props?: Record<string, any>;
     children?: IRoute[];
 }
 
 const routes: IRoute[] = [
     {
-        path: "/",
-        element: Layout,
+        path: "intro",
+        menuTitle: "简介",
+        element: lazy(() => import('./pages/Intro'))
+    },
+    {
+        path: "react",
+        menuTitle: "React",
         children: [
             {
-                path: "react",
-                menuTitle: "React",
-                element: IndexPage,
-                props: {
-                    title: "React"
-                },
+                path: "hooks",
+                menuTitle: "hooks",
                 children: [
                     {
-                        path: "context",
-                        menuTitle: "Context",
-                        element: lazy(() => import('./pages/react/ContextPage')),
+                        path: "useState",
+                        menuTitle: "useState",
+                        element: lazy(() => import('./pages/react/hooks/UseStatePage')),
                     },
                     {
-                        path: "error-boundaries",
-                        menuTitle: "错误边界",
-                        element: lazy(() => import('./pages/react/ErrorBoundariesPage')),
+                        path: "useEffect",
+                        menuTitle: "useEffect",
+                        element: lazy(() => import('./pages/react/hooks/UseEffectPage')),
                     },
                     {
-                        path: "forwarding-refs",
-                        menuTitle: "Refs转发",
-                        element: lazy(() => import('./pages/react/ForwardingRefsPage')),
+                        path: "useContext",
+                        menuTitle: "useContext",
+                        element: lazy(() => import('./pages/react/hooks/UseContextPage')),
+                    },
+                    {
+                        path: "useReducer",
+                        menuTitle: "useReducer",
+                        element: lazy(() => import('./pages/react/hooks/UseReducerPage')),
+                    },
+                    {
+                        path: "useCallback",
+                        menuTitle: "useCallback",
+                        element: lazy(() => import('./pages/react/hooks/UseCallbackPage')),
+                    },
+                    {
+                        path: "useMemo",
+                        menuTitle: "useMemo",
+                        element: lazy(() => import('./pages/react/hooks/UseMemoPage')),
+                    },
+                    {
+                        path: "useRef",
+                        menuTitle: "useRef",
+                        element: lazy(() => import('./pages/react/hooks/UseRefPage')),
+                    },
+                    {
+                        path: "useImperativeHandle",
+                        menuTitle: "useImperativeHandle",
+                        element: lazy(() => import('./pages/react/hooks/UseImperativeHandlePage')),
+                    },
+                    {
+                        path: "useLayouEffect",
+                        menuTitle: "useLayouEffect",
+                        element: lazy(() => import('./pages/react/hooks/UseLayoutEffectPage')),
                     },
                 ]
             },
             {
-                path: "react-router-dom",
-                menuTitle: "ReactRouterDom",
-                element: IndexPage,
-                props: {
-                    title: "ReactRouterDom"
-                },
+                path: "context",
+                menuTitle: "Context",
+                element: lazy(() => import('./pages/react/ContextPage')),
             },
             {
-                path: "tailwindcss",
-                menuTitle: "tailwindcss",
-                element: IndexPage,
-                props: {
-                    title: "tailwindcss"
-                },
+                path: "error-boundaries",
+                menuTitle: "错误边界",
+                element: lazy(() => import('./pages/react/ErrorBoundariesPage')),
+            },
+            {
+                path: "forwarding-refs",
+                menuTitle: "Refs转发",
+                element: lazy(() => import('./pages/react/ForwardingRefsPage')),
             },
         ]
-    }
+    },
+    {
+        path: "react-router-dom",
+        menuTitle: "ReactRouterDom",
+    },
+    {
+        path: "tailwindcss",
+        menuTitle: "tailwindcss",
+    },
 ]
 export default routes

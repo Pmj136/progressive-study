@@ -3,7 +3,7 @@ import { NavLink, useLocation } from "react-router-dom"
 
 function getUrls(pathname: string) {
   if (pathname === '/') return ['/intro']
-  const matchAll = pathname.match(/\/\w+(?=\/?)/g)
+  const matchAll = pathname.match(/\/[\w-]+(?=\/?)/g)
   if (matchAll == null) return []
   const result: string[] = []
   let str = matchAll[0]

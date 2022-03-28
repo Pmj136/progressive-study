@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export default function UseStatePage() {
     const [count, setCount] = useState(0)
@@ -6,8 +6,8 @@ export default function UseStatePage() {
         <div>
             <span>{count}</span>
             <div>
-                <button className="btn btn-warn" onClick={() => setCount(p => p - 1)}>减一</button>
-                <button className="btn btn-primary" onClick={() => setCount(p => p + 1)}>加一</button>
+                <button className="warn" onClick={() => setCount(p => p - 1)}>减一</button>
+                <button className="primary aaa" onClick={() => setCount(p => p + 1)}>加一</button>
             </div>
         </div>
     )

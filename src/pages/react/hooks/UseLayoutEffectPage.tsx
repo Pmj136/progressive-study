@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 export default function UseLayoutEffectPage() {
+  const [str, setStr] = useState("稍后")
+  const divRef = useRef(null)
+  useEffect(() => {
+    console.log('effect');
+  }, [])
+  useLayoutEffect(() => {
+    console.log('layout effect');
+  }, [])
   return (
-    <div>UseLayoutEffectPage</div>
-  )
+    <div ref={divRef}>
+      {str}
+    </div>
+  );
 }

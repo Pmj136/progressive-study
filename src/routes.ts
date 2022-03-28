@@ -19,6 +19,27 @@ const routes: IRoute[] = [
         menuTitle: "React",
         children: [
             {
+                path: "classComponent",
+                menuTitle: "类组件",
+                children: [
+                    {
+                        path: 'lifeCycle',
+                        menuTitle: '生命周期',
+                        element: lazy(() => import('./pages/react/class-component/LifeCycle'))
+                    },
+                    {
+                        path: 'defaultProps',
+                        menuTitle: 'props默认值',
+                        element: lazy(() => import('./pages/react/class-component/DefaultProps'))
+                    }
+                ]
+            },
+            {
+                path: "functionalComponent",
+                menuTitle: "函数式组件",
+                element: lazy(() => import('./pages/react/FunctionalComponent'))
+            },
+            {
                 path: "hooks",
                 menuTitle: "hooks",
                 children: [

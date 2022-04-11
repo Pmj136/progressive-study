@@ -1,45 +1,48 @@
-import { lazy, ReactElement } from "react";
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Fragment, lazy, ReactElement } from "react";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import routes, { IRoute } from "./routes";
 
-function renderIndexRoute(items?: IRoute[]): ReactElement | null {
+function renderIndexRoute(item: IRoute): ReactElement | null {
+    const { element = Outlet, props } = item
+    if (element === Outlet && item.children?.length)
+        return renderIndexRoute(item.children[0])
+    const Comp = element
+    return <Route index element={<Comp {...props} />} />
+}
+
+function renderRoutes(items?: IRoute[]): ReactElement[] | null {
     if (items?.length) {
-        const { element = Outlet, props } = items[0]
-        if (element === Outlet)
-            return renderIndexRoute(items[0].children)
-        const Comp = element
-        return <Route index element={<Comp {...props} />} />
+        return items.map((value, index) => {
+            const { path, element = Outlet, props, children } = value
+            const Comp = element
+            return (
+                <Fragment key={path}>
+                    {
+                        index === 0 && renderIndexRoute(value)
+                    }
+                    <Route path={path} element={<Comp {...props} />}>
+                        {renderRoutes(children)}
+                    </Route>
+                </Fragment>
+            )
+        })
     }
     return null
 }
 
-function renderRoutes(items?: IRoute[]): ReactElement[] | null {
-    if (!items) return null
-    return items.map((value) => {
-        const { path, element = Outlet, props, children } = value
-        const Comp = element
-        return (
-            <Route path={path} element={<Comp {...props} />} key={path}>
-                <>
-                    {renderIndexRoute(children)}
-                    {renderRoutes(children)}
-                </>
-            </Route>
-        )
-    })
-}
-
 const Page404 = lazy(() => import('./pages/Page404'))
+
 function App() {
     return (
-        <Routes>
-            <Route path="/" element={<Layout />}>
-                {renderIndexRoute(routes)}
-                {renderRoutes(routes)}
-            </Route>
-            <Route path="*" element={<Page404 />} />
-        </Routes>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    {renderRoutes(routes)}
+                </Route>
+                <Route path="*" element={<Page404 />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 

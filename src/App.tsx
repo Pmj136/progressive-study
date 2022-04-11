@@ -4,7 +4,7 @@ import Layout from "./layout/Layout";
 import routes, { IRoute } from "./routes";
 
 function renderIndexRoute(items?: IRoute[]): ReactElement | null {
-    if (items && items.length) {
+    if (items?.length) {
         const { element = Outlet, props } = items[0]
         if (element === Outlet)
             return renderIndexRoute(items[0].children)

@@ -1,17 +1,33 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
-export default function UseLayoutEffectPage() {
-  const [str, setStr] = useState("稍后")
-  const divRef = useRef(null)
-  useEffect(() => {
-    console.log('effect');
-  }, [])
+function Test() {
+  const [state, setState] = useState("hello world")
+
+  // useEffect(() => {
+  //   let i = 0;
+  //   while (i <= 100000000) {
+  //     i++;
+  //   };
+  //   setState("updated");
+  // }, []);
+
   useLayoutEffect(() => {
-    console.log('layout effect');
-  }, [])
+    let i = 0;
+    while (i <= 100000000) {
+      i++;
+    };
+    setState("updated");
+  }, []);
+
   return (
-    <div ref={divRef}>
-      {str}
-    </div>
+    <>
+      <div>{state}</div>
+    </>
   );
+}
+
+export default function UseLayoutEffectPage() {
+  return <>
+    <Test />
+  </>
 }

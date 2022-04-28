@@ -15,6 +15,16 @@ const routes: IRoute[] = [
         element: lazy(() => import('./pages/Intro'))
     },
     {
+        path: "exampels",
+        menuTitle: "示例",
+        element: lazy(() => import('./pages/Examples'))
+    },
+    {
+        path: "typescript",
+        menuTitle: "TypeScript",
+        element: lazy(() => import('./pages/typescript/TypeScriptPage'))
+    },
+    {
         path: "react",
         menuTitle: "React",
         children: [
@@ -87,6 +97,21 @@ const routes: IRoute[] = [
                         path: "useLayouEffect",
                         menuTitle: "useLayouEffect",
                         element: lazy(() => import('./pages/react/hooks/UseLayoutEffectPage')),
+                    },
+                    {
+                        path: "useTransition",
+                        menuTitle: "useTransition",
+                        element: lazy(() => import('./pages/react/hooks/UseTransitionPage')),
+                    },
+                    {
+                        path: "useId",
+                        menuTitle: "useId",
+                        element: lazy(() => import('./pages/react/hooks/UseIdPage')),
+                    },
+                    {
+                        path: "useDeferredValue",
+                        menuTitle: "useDeferredValue",
+                        element: lazy(() => import('./pages/react/hooks/UseDeferredValuePage')),
                     },
                 ]
             },
